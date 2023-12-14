@@ -1,0 +1,48 @@
+<div id="show-article">
+  <div id="show-article-header">
+    <div>
+      <h2> <%= @article.title %> </h2>
+      <h5 style="margin-top:5px"> ~ <%= @article.author %></h5>
+    </div>
+    <div id="action-btns">
+      <%= link_to edit_article_path(@article) do %>
+        <div id="edit-btn-wrapper">
+            <div id="edit-btn">
+            </div>
+        </div>
+      <% end%>
+      <%= link_to article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this article?"} do %>
+        <div id="delete-btn-wrapper">
+          <div id="delete-btn">
+          </div>
+        </div>
+    <% end%>
+    </div>
+  </div>
+  <div id="show-article-body">
+    <div id="show-article-content">
+      <p><%= @article.body %></p>
+    </div>
+    <aside id="show-article-comments">
+        <div id="previous-comments">
+          <div class="comments-header">
+            <h2>Comments</h2>
+          </div>
+          <div id="comments-list">
+            <% @article.comments.each do |comment| %>
+            <% end %>
+            <%= render @article.comments %>
+          </div>
+        </div>
+        <div id="new-comment">
+          <div class="comments-header">
+            <h3>Leave a comment...</h3>
+          </div>
+          <div id="comment-form">
+              <%= render "comments/form" %>
+          </div>
+        </div>
+    </aside>
+  </div>
+</div>
+

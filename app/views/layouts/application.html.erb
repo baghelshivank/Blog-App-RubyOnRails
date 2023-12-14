@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Indore Times</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/flash' %>
+      
+    <% if user_signed_in? %>
+      <%= button_to 'Sign Out', sign_out_path, method: :delete %>
+    <% end %>
+
+    <%= yield %>  
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<div id="relevant-articles">
+  <div id="relevant-articles-header">
+    <div>
+      <h2> <%= @articles.first.category.upcase %> </h2>
+      <br/>
+      <h4> ~ <%= @articles.where(status: "public").count %> articles and counting </h4>
+    </div>
+    <div>
+      <%= link_to "New Article", new_article_path %>
+    </div>
+  </div>
+
+  <div id="relevant-articles-body">
+    <table border='1'>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles.each do |article| %>
+          <% unless article.archived?%>
+            <tr>
+              <td><%= link_to article.title, "/articles/#{article.id}"%> </td>
+              <td><%= article.author %></td>
+              <td><%= article.created_at %></td>
+              <td><%= article.updated_at %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

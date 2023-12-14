@@ -1,0 +1,67 @@
+<div id="form-wrapper">
+	<%= form_with model: article do |form| %>
+		
+		<div>
+			<%= form.radio_button :category, "Trending", :checked => (article.category=="Trending"?true:false) %>
+			<%= form.label :category, "Trending", :value => "Trending"%>
+			<br>
+			<%= form.radio_button :category, "Entertainment", :checked => (article.category=="Entertainment"?true:false)  %>
+			<%= form.label :category, "Entertainment", :value => "Entertainment" %>
+			<br>
+			<%= form.radio_button :category, "Business", :checked => (article.category=="Business"?true:false)  %>
+			<%= form.label :category, "Business", :value => "Business" %>
+			<br>
+			<%= form.radio_button :category, "Technology", :checked => (article.category=="Technology"?true:false)  %>
+			<%= form.label :category, "Technology", :value => "Technology" %>
+			<br>
+			<%= form.radio_button :category, "International", :checked => (article.category=="International"?true:false)  %>
+			<%= form.label :category, "International", :value => "International" %>
+			<br>
+			<%= form.radio_button :category, "Share Market", :checked => (article.category=="Share Market"?true:false)  %>
+			<%= form.label :category, "Share Market", :value => "Share Market" %>
+			<br>
+			<%= form.radio_button :category, "Matrimonials", :checked => (article.category=="Matrimonials"?true:false)  %>
+			<%= form.label :category, "Matrimonials", :value => "Matrimonials" %>
+			<br>
+			<%= form.radio_button :category, "Horoscope", :checked => (article.category=="Horoscope"?true:false)  %>
+			<%= form.label :category, "Horoscope", :value => "Horoscope" %>
+			<br>
+			<%= form.radio_button :category, "Health", :checked => (article.category=="Health"?true:false)  %>
+			<%= form.label :category, "Health", :value => "Health" %>
+		</div>
+
+		<div>
+			<%= form.label :title %><br>
+			<%= form.text_field :title %>        
+			<% article.errors.full_messages_for(:title).each do |message| %>
+				<div> <%= message %> </div>
+			<% end %>
+		</div>
+
+		<div>
+			<%= form.label :author %><br>
+			<%= form.text_field :author %>        
+			<% article.errors.full_messages_for(:author).each do |message| %>
+				<div> <%= message %> </div>
+			<% end %>
+		</div>
+
+		<div>
+			<%= form.label :body %><br>
+			<%= form.text_area :body %>
+			<% article.errors.full_messages_for(:body).each do |message| %>
+				<div> <%= message %> </div>
+			<% end %>
+		</div>
+
+		<div>
+			<%= form.label :status %>
+			<%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
+	  	</div>
+	  
+
+		<div>
+			<%= form.submit %>
+		</div>
+	<% end %>
+</div>
